@@ -7,13 +7,13 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<!-- ====== شاشة الدخول ====== -->
+
+<!-- شاشة الدخول -->
 <div id="loginOverlay">
   <div class="login-card">
-    <img class="login-logo" src="natgas.png" alt="ناتجاس" onerror="this.style.display='none'">
+    <img class="login-logo" src="file://192.168.200.13/Emergency/devices/logo.png" alt="ناتجاس" onerror="this.style.display='none'">
     <div class="login-title">نموذج تسجيل بلاغات ناتجاس</div>
     <div class="login-subtitle">يرجى تسجيل الدخول للمتابعة</div>
-
     <div class="login-field">
       <label for="loginUser">اسم المستخدم</label>
       <input id="loginUser" type="text" placeholder="أدخل اسم المستخدم" autocomplete="username">
@@ -22,7 +22,6 @@
       <label for="loginPass">كلمة المرور</label>
       <input id="loginPass" type="password" placeholder="أدخل كلمة المرور" autocomplete="current-password">
     </div>
-
     <div id="loginError">اسم المستخدم أو كلمة المرور غير صحيحة</div>
     <button id="loginBtn">دخول</button>
   </div>
@@ -31,22 +30,28 @@
 <div class="message" id="msgBox" role="status" aria-live="polite"></div>
 
 <div class="container">
+
+  <!-- Header -->
   <div class="header">
-    <div class="logo"><img src="file://192.168.200.13/Emergency/devices/logo.png" alt="ناتجاس"></div>
+    <div class="logo">
+      <img src="file://192.168.200.13/Emergency/devices/logo.png" alt="ناتجاس" onerror="this.style.display='none'">
+    </div>
     <div class="hwrap"><h1>نموذج تسجيل بلاغات ناتجاس</h1></div>
     <div class="top-controls">
-      <button id="themeToggle" class="btn ghost" title="الوضع">🌙</button>
+      <button id="themeToggle" class="btn ghost">🌙</button>
       <button id="openSaved" class="btn">البلاغات المحفوظة</button>
       <button id="openDelivered" class="btn secondary">بلاغات تم تبليغها</button>
     </div>
   </div>
 
-  <!-- SEARCH + FORM -->
+  <!-- Search + Form Grid -->
   <div class="grid">
+
+    <!-- Search Card -->
     <div class="card">
-      <div class="search-block" aria-label="بحث">
-        <select id="searchRegion" style="min-width:170px">
-          <option value="">اختر / كل المناطق (أفضل اختيار المنطقة)</option>
+      <div class="search-block">
+        <select id="searchRegion">
+          <option value="">كل المناطق</option>
           <option>زايد</option><option>اكتوبر</option><option>المقطم</option><option>السلام</option><option>الحرفيين</option>
           <option>برج العرب</option><option>قباري</option><option>محرم بك</option><option>العجمي</option><option>ابو حمص</option>
           <option>كفر الدوار</option><option>المحمودية</option><option>الرحمانية</option><option>النوبارية الجديدة</option>
@@ -54,34 +59,35 @@
           <option>ادكو</option><option>ايتاي البارود</option><option>رشيد</option><option>الدلنجات</option>
           <option>ابو المطامير</option><option>دمنهور</option>
         </select>
-
-        <input id="searchInput" type="text" placeholder="ابحث بالـ CRN أو بالاسم المرن باستخدام % أو بالموبايل" style="flex:1" />
+        <input id="searchInput" type="text" placeholder="ابحث بالـ CRN أو الاسم (%) أو الموبايل" />
         <button id="searchBtn" class="btn">بحث</button>
         <button id="clearBtn" class="btn secondary">مسح</button>
       </div>
-
       <div id="searchResults" class="search-results" style="display:none"></div>
-
-      <div style="margin-top:12px" class="small">ملحوظة: يمكنك كتابة CRN كامل أو أجزاء من الاسم مثل <code>%حمد%عل%سيد</code></div>
+      <div style="margin-top:10px" class="small">يمكنك كتابة CRN كامل أو أجزاء من الاسم مثل <code>%حمد%عل%سيد</code></div>
     </div>
 
+    <!-- Form Card -->
     <div class="card">
       <form id="clientForm" autocomplete="off">
-        <div class="form-row"><label>المنطقة</label><select id="region" required>
-          <option value="">اختر المنطقة</option>
-          <option>زايد</option><option>اكتوبر</option><option>المقطم</option><option>السلام</option><option>الحرفيين</option>
-          <option>برج العرب</option><option>قباري</option><option>محرم بك</option><option>العجمي</option><option>ابو حمص</option>
-          <option>كفر الدوار</option><option>المحمودية</option><option>الرحمانية</option><option>النوبارية الجديدة</option>
-          <option>وادي النطرون</option><option>شبرا خيت</option><option>كوم حمادة</option><option>حوش عيسي</option>
-          <option>ادكو</option><option>ايتاي البارود</option><option>رشيد</option><option>الدلنجات</option>
-          <option>ابو المطامير</option><option>دمنهور</option>
-        </select></div>
-
+        <div class="form-row">
+          <label>المنطقة</label>
+          <select id="region" required>
+            <option value="">اختر المنطقة</option>
+            <option>زايد</option><option>اكتوبر</option><option>المقطم</option><option>السلام</option><option>الحرفيين</option>
+            <option>برج العرب</option><option>قباري</option><option>محرم بك</option><option>العجمي</option><option>ابو حمص</option>
+            <option>كفر الدوار</option><option>المحمودية</option><option>الرحمانية</option><option>النوبارية الجديدة</option>
+            <option>وادي النطرون</option><option>شبرا خيت</option><option>كوم حمادة</option><option>حوش عيسي</option>
+            <option>ادكو</option><option>ايتاي البارود</option><option>رشيد</option><option>الدلنجات</option>
+            <option>ابو المطامير</option><option>دمنهور</option>
+          </select>
+        </div>
         <div class="form-row"><label>اسم العميل</label><input id="name" type="text" required></div>
-        <div class="form-row"><label>رقم الهاتف المحمول</label><input id="phone" type="tel" maxlength="11" required></div>
+        <div class="form-row"><label>رقم الهاتف المحمول</label><input id="phone" type="tel" maxlength="11" inputmode="numeric" required></div>
         <div class="form-row"><label>العنوان</label><input id="address" type="text" required></div>
         <div class="form-row"><label>CRN</label><input id="crn" type="text" maxlength="17" placeholder="00/00/0000/0000" required></div>
-        <div class="form-row"><label>نوع الحالة</label>
+        <div class="form-row">
+          <label>نوع الحالة</label>
           <select id="caseType" required>
             <option value="">اختر نوع الحالة</option>
             <option>مشاكل عداد مسبق الدفع</option><option>متابعة اعمال حفر</option><option>عداد ميكانيكي معطل</option>
@@ -97,54 +103,36 @@
             <option>تامين جهاز استغناء</option><option>عبث اجهزة</option><option>عدم ثبات ضغط من منظم</option><option>اخري</option>
           </select>
         </div>
-
-        <!-- مسجل البلاغ -->
         <div class="form-row">
           <label>مسجل البلاغ</label>
           <select id="recorderSelect">
             <option value="">اختر مسجل البلاغ (اختياري)</option>
-            <option>أ. ايمن السيد</option>
-            <option>أ. محمود السعيد</option>
-            <option>أ. اسامة لاشين</option>
-            <option>أ. عبد العظيم طه</option>
-            <option>أ. محمود الدبركي</option>
-            <option>أ. احمد عرفه</option>
-            <option>أ. احمد حسين</option>
-            <option>أ. احمد ابو علي</option>
-            <option>أ. احمد المعاز</option>
-            <option>أ. اسلام محي</option>
-            <option>أ. انور بحيري</option>
-            <option>أ. اسامة انور</option>
-            <option>أ. ابراهيم محمد</option>
-            <option>أ. حمزة محمد</option>
-            <option>أ. محمود اشرف</option>
-            <option>أ. محمود فايد</option>
-            <option>أ. محمود جمال</option>
-            <option>أ. عمرو الاعصر</option>
-            <option>أ. عمرو هشام</option>
-            <option>أ. عبد الرحمن شعراوي</option>
-            <option>أ. عبد الرحمن محمود</option>
-            <option>أ. سامح عماد</option>
-            <option>أ. رائد نبيل</option>
+            <option>أ. ايمن السيد</option><option>أ. محمود السعيد</option><option>أ. اسامة لاشين</option>
+            <option>أ. عبد العظيم طه</option><option>أ. محمود الدبركي</option><option>أ. احمد عرفه</option>
+            <option>أ. احمد حسين</option><option>أ. احمد ابو علي</option><option>أ. احمد المعاز</option>
+            <option>أ. اسلام محي</option><option>أ. انور بحيري</option><option>أ. اسامة انور</option>
+            <option>أ. ابراهيم محمد</option><option>أ. حمزة محمد</option><option>أ. محمود اشرف</option>
+            <option>أ. محمود فايد</option><option>أ. محمود جمال</option><option>أ. عمرو الاعصر</option>
+            <option>أ. عمرو هشام</option><option>أ. عبد الرحمن شعراوي</option><option>أ. عبد الرحمن محمود</option>
+            <option>أ. سامح عماد</option><option>أ. رائد نبيل</option>
             <option value="__other__">أخر — اكتب يدويًا</option>
           </select>
-          <input id="recorderOther" type="text" placeholder="اكتب اسم مسجل البلاغ" style="display:none">
+          <input id="recorderOther" type="text" placeholder="اكتب اسم مسجل البلاغ" style="display:none; margin-top:6px;">
         </div>
-
-        <div style="display:flex;gap:8px;align-items:center">
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:6px;">
           <button id="saveBtn" class="btn" type="submit">حفظ البلاغ</button>
-          <div id="saveLoader" style="display:none;margin-left:6px"><span class="loader"></span></div>
+          <div id="saveLoader" style="display:none"><span class="loader"></span></div>
           <div class="small" style="margin-right:auto">البيانات تحفظ في شيت المنطقة المختارة</div>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Filter + Tables -->
+  <!-- Table Card -->
   <div style="margin-top:14px" class="card">
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <div class="filter-bar">
       <label class="small">فلتر بالمنطقة:</label>
-      <select id="filterRegion" style="min-width:180px">
+      <select id="filterRegion">
         <option value="__ALL__">إظهار كل المناطق</option>
         <option>زايد</option><option>اكتوبر</option><option>المقطم</option><option>السلام</option><option>الحرفيين</option>
         <option>برج العرب</option><option>قباري</option><option>محرم بك</option><option>العجمي</option><option>ابو حمص</option>
@@ -153,8 +141,7 @@
         <option>ادكو</option><option>ايتاي البارود</option><option>رشيد</option><option>الدلنجات</option>
         <option>ابو المطامير</option><option>دمنهور</option>
       </select>
-
-      <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+      <div class="refresh-wrap">
         <button id="refreshBtn" class="btn ghost">تحديث البيانات</button>
         <span id="listLoader" style="display:none"><span class="loader"></span></span>
       </div>
